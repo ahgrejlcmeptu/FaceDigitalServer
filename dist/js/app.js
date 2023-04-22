@@ -25,15 +25,26 @@
 //   maskPhone(item)
 // })
 
-const questions = [...document.querySelectorAll('.creating-item')]
+const creating = [...document.querySelectorAll('.creating-item')]
+creating.forEach(item => {
+  toggleHeight(item, '.creating-item-header', '.creating-item-body')
+})
+
+const questions = [...document.querySelectorAll('.questions-item')]
 questions.forEach(item => {
-  const header = item.querySelector('.creating-item-header')
+  toggleHeight(item, '.questions-item-header', '.questions-item-body')
+})
+
+function toggleHeight(item, head, height) {
+  const header = item.querySelector(head)
   header.addEventListener('click', () => {
-    const body = item.querySelector('.creating-item-body')
+    const body = item.querySelector(height)
     item.style.setProperty('--height', body.clientHeight + 'px')
     item.classList.toggle('active')
   })
-})
+}
+
+
 tabsInit()
 function tabsInit() {
   const tabsBlock = document.querySelectorAll('.tabs-block')
